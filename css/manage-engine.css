@@ -1,0 +1,20 @@
+.manage-engine{
+    height: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.manage-engine-setting {
+    display: flex;
+    height: 25%;
+    aspect-ratio: 1/1;
+    margin: 5rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
