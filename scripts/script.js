@@ -34,7 +34,7 @@ function addNewEngineView(){
 }
 //creating a new engine
 function addNewEngine() {  
-    let engineInputObject = { 
+    const engineInputObject = { 
         name : 'Add Engine' ,
         inputs : [
             {
@@ -58,8 +58,6 @@ function addNewEngine() {
     let inputKeys = engineInputObject.inputs.map((data)=> data["field-name"])
     let inputValues = generatePopup(engineInputObject);
     $('#popup-submit').bind('click',()=>{
-        console.log(inputKeys);
-        console.log(inputValues);
         for(let i of inputKeys){
             if(inputValues[i].match(/w+/)){
                 window.alert("Invalid Inputs")
@@ -79,6 +77,12 @@ function addNewEngine() {
 function loadEngines(){
      //remove old engines
      $('.engine-view').empty();
+     $.get(`${url}sitesearch/engine?action=createEngine&engine_name=zoho&domain_name=zoho&domain_url=https://www.charmhealth.com/&plan_id=1&sitemap_indexing_enabled=true`,(data)=>{
+        console.log(data.response.count = 0);
+        if(data.response.count <= 0 ){
+            addNewEngine()
+        }
+     })
      changeBreadCrumb([engine.user])
      addNewEngineView();
     let enginesList = engine.engines
@@ -87,16 +91,22 @@ function loadEngines(){
         
     }
 }
-loadEngines()
-
-$(document).ready(()=>{
-    
-})
 
 
 function getScript(filename){
-var fileref=document.createElement('script')
-  fileref.setAttribute("type","text/javascript")
-  fileref.setAttribute("src", filename)
-  return fileref
+    var fileref=document.createElement('script')
+    fileref.setAttribute("type","text/javascript")
+    fileref.setAttribute("src", filename)
+    return fileref
 }
+
+
+
+
+$(document).ready(()=>{
+    loadEngines()
+    // $('.engine')[0].click()   
+})
+
+
+const url = 'https://ba04fdaf-aef4-492f-a66f-e066199bd866.mock.pstmn.io/'
