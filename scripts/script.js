@@ -1,4 +1,4 @@
-//create a engine dom and append into engine wrapper
+    //create a engine dom and append into engine wrapper
 function generateEngine(engineName,engineId){
     let engineElement = document.createElement('div');
     engineElement.className = 'engine';
@@ -78,12 +78,12 @@ function loadEngines(){
      //remove old engines
      $('.engine-view').empty();
      $.get(`${url}sitesearch/engine?action=createEngine&engine_name=zoho&domain_name=zoho&domain_url=https://www.charmhealth.com/&plan_id=1&sitemap_indexing_enabled=true`,(data)=>{
-        console.log(data.response.count = 0);
+        newEngine = data.response
         if(data.response.count <= 0 ){
             addNewEngine()
         }
      })
-     changeBreadCrumb([engine.user])
+     changeBreadCrumb(['ZOHO'])
      addNewEngineView();
     let enginesList = engine.engines
     for(let i of enginesList){
